@@ -58,7 +58,7 @@ class User extends Authenticatable
     public function candidates(){
         return $this->hasMany(Candidate::class, 'user_id', 'id');
     }
-
+    
     public function candidate(){
     return $this->hasOne(Candidate::class);
     }
@@ -67,3 +67,5 @@ class User extends Authenticatable
     return $this->hasMany(Postulate::class, 'candidate_id');
     }
 }
+
+

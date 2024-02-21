@@ -16,14 +16,14 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        //dd($credentials);
+        //dd($credentials); 
 
         if (Auth::attempt($credentials)) {
             return redirect()->route('welcome');
         }
 
-
-        dd(Auth::user());
+        
+        dd(Auth::user()); 
         return redirect()->route('login')->with('error', 'Credenciales incorrectas. Por favor, inténtelo de nuevo.');
     }
 

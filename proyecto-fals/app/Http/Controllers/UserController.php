@@ -52,7 +52,7 @@ class UserController extends Controller
             case 4:
                 return redirect()->route('login');
         }
-
+    
         if ($request->input('role_id') == 4) {
             $user->candidate()->create([
             ]);

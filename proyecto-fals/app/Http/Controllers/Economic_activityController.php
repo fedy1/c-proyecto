@@ -16,11 +16,11 @@ class Economic_activityController extends Controller
 
         $request->validate([
         'code'=> 'required|min:3',
-        'name'=>'required|min:2|'
+        'name'=>'required|min:2|'   
         ]);
 
         Economic_activity::create(['code'=>$request->code,
-                                'name'=>$request->name
+                                'name'=>$request->name 
                             ]);
     return redirect()->route('company.create');
 }
