@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/vervacantes.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="img/icono.png">
+    <link rel="shortcut icon" href="img/skillsift.jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Montserrat&display=swap" rel="stylesheet">
     @yield('estilos')
     <title>Hola</title>
@@ -17,10 +17,10 @@
     <header id="main-header">
         <nav>
             <div class="logo">
-                <img src="{{ asset('img/a.png') }}" alt="Tu Empresa">
+                <img src="{{ asset('img/skillsiftfonde.jpeg') }}" alt="Tu Empresa">
             </div>
             <ul>
-                <li><a href="{{ route('user.create') }}">Registratse</a></li>
+                <li><a href="{{ route('user.create') }}">Registrarse</a></li>
                 @auth
                     @if(auth()->user()->role_id == 1)
                         <li><a href="{{ route('welcome') }}">Inicio</a></li>
