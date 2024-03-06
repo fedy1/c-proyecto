@@ -19,7 +19,7 @@
             background-position: center;
         }
     </style>
-    <title>Hola</title>
+    <title>SkillSift</title>
 </head>
 <body>
     <header id="main-header">
