@@ -8,19 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Candidate extends Model
 {
     use HasFactory;
-    protected $table="candidates";
 
     protected $fillable = [
-        "user_id",
-        "selection_status",
-        "points"
+        'user_id',
+        'selection_status',
+        'points'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
-    public function postulates()
+    public function user()
     {
-    return $this->hasMany(Postulate::class, 'candidate_id');
+        return $this->belongsTo(User::class);
     }
 }

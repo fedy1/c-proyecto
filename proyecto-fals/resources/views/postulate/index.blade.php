@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3>Vacantes a las que has aplicado</h3>
+    <div style="text-align: center;">
+        <h3>Vacantes a las que has aplicado</h3>
+    </div>
 
     @if($userApplications->isEmpty())
         <p style="text-align: center;">No has aplicado a ninguna vacante aún.</p>
@@ -23,9 +25,8 @@
                             <td>{{ $application->vacancy->company->name }}</td>
                             <td>{{ $application->vacancy->description }}</td>
                             <td>
-                                <form action="{{ route('postulate.cancel', $application->id) }}" method="POST">
+                                <form action="{{ route('postulate.apply', $application->vacancy->id) }}" method="POST">
                                     @csrf
-                                    @method('delete')
                                     <button type="submit">Cancelar postulación</button>
                                 </form>
                             </td>

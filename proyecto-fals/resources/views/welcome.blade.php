@@ -48,10 +48,10 @@
 @section('content')
 <div class="container"> <!-- Contenedor principal -->
     <div class="form-container"> <!-- Contenedor del formulario -->
-        <h2>Bienvenido</h2>
+        <h2>Bienvenido/a</h2>
 
         @if(auth()->check())
-            <h2>Hola {{ auth()->user()->name }}, su rol es {{ auth()->user()->role->role_name }}</h2>
+            <h2>{{ auth()->user()->name }}, el rol que usted tendra es: {{ auth()->user()->role->role_name }}</h2>
         @else
             <p>Por favor, inicie sesión para ver este contenido.</p>
         @endif

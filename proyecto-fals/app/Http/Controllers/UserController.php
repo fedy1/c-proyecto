@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function create(){
-        $roles=Role::pluck('role_name', 'id');
+    public function create()
+    {
+        $roles = Role::pluck('role_name', 'id');
 
         return view("user.create", compact('roles'));
-
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -28,6 +29,7 @@ class UserController extends Controller
             'password' => 'required|min:8',
             'role_id' => 'required'
         ]);
+
         $user = User::create([
             'doc_type' => $request->doc_type,
             'doc_num' => $request->doc_num,
@@ -39,6 +41,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'role_id' => $request->role_id
         ]);
+
         switch ($request->input('role_id')) {
             case 1:
                 session()->flash('registration_message', 'Hola ' . $request->name . ', su ID es ' . $user->id);
@@ -51,21 +54,20 @@ class UserController extends Controller
                 return redirect()->route('recruiter.create');
             case 4:
                 return redirect()->route('login');
+            default:
+                return redirect()->route('default.route');
         }
-    
-        if ($request->input('role_id') == 4) {
-            $user->candidate()->create([
-            ]);
-        }
-}
-    public function index(){
+    }
+
+    public function index()
+    {
         $users = User::all();
-        return view('user.index', ['users'=>$users]);
+        return view('user.index', ['users' => $users]);
     }
 
-    public function destroy (User $user){
+    public function destroy(User $user)
+    {
         $user->delete();
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success', 'User deleted successfully');
     }
-
 }

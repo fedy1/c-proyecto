@@ -36,6 +36,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
+            color: black; /* Cambio de color de texto a negro */
         }
 
         .form-part select {
@@ -44,6 +45,7 @@
             background-repeat: no-repeat;
             background-position: right 10px center;
             padding-right: 30px;
+            color: black; /* Cambio de color de texto a negro */
         }
 
         .form-part input[type="submit"] {
@@ -66,6 +68,17 @@
             color: #333;
             margin-bottom: 5px;
             display: block;
+        }
+
+        /* Estilos para los enlaces de registro e inicio de sesión */
+        .form-links {
+            text-align: right;
+        }
+
+        .form-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px; /* Espacio entre enlaces */
         }
     </style>
 @endsection
@@ -93,18 +106,27 @@
                     <select name="doc_type"> 
                         <option value="cc">CC</option>
                         <option value="ti">TI</option>
-                        <option value="extranjeria">EXT</option>
+                        <option value="extranjeria">CE</option>
                     </select>
 
                     <input type="text" name="doc_num" placeholder="Numero de documento">
                     <input type="text" name="name" placeholder="Nombre">
                     <input type="text" name="last_name" placeholder="Apellido">
                     <input type="text" name="phone" placeholder="Telefono">
+
+                    <span>Género</span>
+                <select name="gender">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                </select>
             </div>
         </div>
 
         <div class="form-column">
             <div class="form-part">
+            <label for="birthdate" :options="['maxDate' => '2006-12-31']" >Fecha de Nacimiento</label>
+            <x-flatpickr name="birthdate" />
                 <input type="text" name="user_name" placeholder="Nombre de usuario">
                 <input type="text" name="email" placeholder="Correo electronico">
                 <input type="password" name="password" placeholder="Clave">
@@ -118,10 +140,14 @@
 
                 <!--<input type="text" name="role_id", placeholder="Id rol">-->
                 <input type="submit" name="send" value="Registrarse">
-                </form> <!-- Cierre del formulario aquí -->
+                </form> 
+                <x-flatpickr::style />
+                <x-flatpickr::script /><!-- Cierre del formulario aquí -->
             </div>
         </div>
     </div>
 </div>
+
+
 
 @endsection

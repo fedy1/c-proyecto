@@ -16,14 +16,10 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        //dd($credentials); 
-
         if (Auth::attempt($credentials)) {
             return redirect()->route('welcome');
         }
 
-        
-        dd(Auth::user()); 
         return redirect()->route('login')->with('error', 'Credenciales incorrectas. Por favor, inténtelo de nuevo.');
     }
 
@@ -35,9 +31,11 @@ class AuthController extends Controller
 
     public function welcome()
     {
-        return view('welcome');
+        $user = Auth::user();
+        $gender = $user->gender; // Ajusta esto según el nombre real del campo en tu modelo de usuario que almacena el género.
+
+        $welcomeMessage = 'Bienvenid' . ($gender == 'male' ? 'o' : 'a') . ' ' . $user->name . ', su rol es ' . $user->role->role_name;
+
+        return view('welcome', compact('welcomeMessage'));
     }
-
-
 }
-

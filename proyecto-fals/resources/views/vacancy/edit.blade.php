@@ -1,23 +1,32 @@
 @extends('layouts.app')
 
-@section('estilos')
-    <link href="{{ asset('css/nuevo.css') }}" rel="stylesheet">
-@endsection
-
 @section('content')
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh;">
+        <h3 style="text-align: center; color: #000000; margin-bottom: 20px;">Editar Vacante</h3>
+        
+        <form action="{{ route('vacancy.update', $vacancy->id) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-<form action="{{ route('candidate.update', $candidate->id) }}" method="POST">
-    @method('PUT')
-    @csrf
+            <div style="margin-bottom: 10px;">
+                <label for="company_id" style="color: #000000; margin-right: 10px;">Compañía:</label>
+                <input type="text" name="company_id" id="company_id" value="{{ $vacancy->company_id }}" style="padding: 5px; border: 1px solid #0F7EF1;">
+            </div>
 
-    <input type="text" name="user_id" placeholder="Id del usuario" value="{{ $candidate->user_id }}">
-    <select name="selection_status">
-        <option value="being studied">BEING STUDIED</option>
-        <option value="selected">SELECTED</option>
-    </select>
-    <input type="text" name="points" placeholder="Puntaje" value="{{ $candidate->points }}">
+            <div style="margin-bottom: 10px;">
+                <label for="description" style="color: #000000; margin-right: 10px;">Descripción:</label>
+                <textarea name="description" id="description" style="padding: 5px; border: 1px solid #0F7EF1;">{{ $vacancy->description }}</textarea>
+            </div>
 
-    <input type="submit" name="send">
-</form>
-      
+            <!-- Agrega los campos restantes de acuerdo a tus necesidades -->
+
+            <div>
+                <button type="submit" style="background-color: #0F7EF1; /* Blue */
+                                            border: none;
+                                            color: white;
+                                            padding: 5px 10px;
+                                            cursor: pointer;">Actualizar Vacante</button>
+            </div>
+        </form>
+    </div>
 @endsection
